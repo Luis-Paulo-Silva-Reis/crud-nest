@@ -6,7 +6,7 @@ services:
       - 5434:5432
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 123
+      POSTGRES_PASSWORD: viWiwiaEsCkha3EJlSsK
       POSTGRES_DB: nest
     networks:
       - freecodecamp
@@ -20,5 +20,23 @@ services:
       POSTGRES_DB: nest
     networks:
       - freecodecamp
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    networks:
+      - freecodecamp
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
 networks:
   freecodecamp:
